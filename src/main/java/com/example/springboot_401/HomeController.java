@@ -16,6 +16,11 @@ public class HomeController {
         return "login";
     }
 
+    @RequestMapping("/secure")
+    public String securePage(){
+        return  "secure";
+    }
+
     @RequestMapping("/admin")
     public String admin(){
         return "admin";

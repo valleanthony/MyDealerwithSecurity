@@ -27,18 +27,20 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserRepo userRepo;
 
+
     @Override
-    public UserDetailsService userDetailServiceBean()throws Exception{
+    public UserDetailsService userDetailsServiceBean() throws Exception {
         return new SSUserDetailsService(userRepo);
     }
+
 
     @Override
     protected void configure(HttpSecurity http)throws Exception{
         http
                 .authorizeRequests()
-                .antMatchers("/")
-                .access("hasAnyAuthority('USER','ADMIN')")
-                .antMatchers("/admin").access("hasAuthority('ADMIN')")
+                .antMatchers("/", "/hello-h2/**").permitAll()
+                //.access("hasAnyAuthority('USER','ADMIN')")
+                //.antMatchers("/admin").access("hasAuthority('ADMIN')")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/login").permitAll()
@@ -66,14 +68,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .passwordEncoder(passwordEncoder());
 
 
-        auth.inMemoryAuthentication()
-                .withUser("ant")
-                .password(passwordEncoder().encode("bean"))
-                .authorities("ADMIN")
-                .and()
-                .withUser("user")
-                .password(passwordEncoder().encode("password"))
-                .authorities("USER");
+//        auth.inMemoryAuthentication()
+//                .withUser("ant")
+//                .password(passwordEncoder().encode("bean"))
+//                .authorities("ADMIN")
+//                .and()
+//                .withUser("user")
+//                .password(passwordEncoder().encode("password"))
+//                .authorities("USER");
 
 
     }
