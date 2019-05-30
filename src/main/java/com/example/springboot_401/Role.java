@@ -40,11 +40,11 @@ public class Role {
         this.users = users;
     }
 
-    public Role() {
-    }
-
     public Role(String role, Collection<User> users) {
         this.role = role;
         this.users = users;
+    }
+
+    public Role() {
     }
 }

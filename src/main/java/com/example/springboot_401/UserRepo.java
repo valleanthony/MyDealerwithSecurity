@@ -4,6 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface UserRepo extends CrudRepository<User,Long> {
     User findByUsername(String username);
-    Long countbyEmail(String email);
-    Long countbyUsername(String username);
+    //Long countbyEmail(String email);
+    //Long countbyUsername(String username);
 }

@@ -15,7 +15,7 @@ import java.security.Principal;
 @Controller
 public class HomeController {
     @Autowired
-    private SSUserDetailsService userService;
+    private UserService userService;
 
     @RequestMapping("/")
     public String index(){
@@ -39,6 +39,13 @@ public class HomeController {
         return "admin";
     }
 
+    @RequestMapping(value = "/register", method=RequestMethod.GET)
+    public String showRegistration(Model model){
+        model.addAttribute("user", new User());
+        return "registration";
+    }
+
+
     @RequestMapping(value = "/register",method = RequestMethod.POST)
     public String processRegistrationpage(@Valid @ModelAttribute ("user") User user, BindingResult result, Model
                                           model){
@@ -47,9 +54,10 @@ public class HomeController {
             return "registration";
         }
         else{
-            userService.
+            userService.saveUser(user);
+            model.addAttribute("message","user account created");
         }
-
+        return"index";
     }
 
 }
