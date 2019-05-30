@@ -1,5 +1,6 @@
 package com.example.springboot_401;
 
+import org.omg.PortableInterceptor.USER_EXCEPTION;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -45,6 +46,13 @@ public class UserService {
 
     public void saveAdmin(User user) {
         user.setRoles(Arrays.asList(roleRepo.findByRole("ADMIN")));
+        user.setEnabled(true);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        userRepo.save(user);
+    }
+
+    public void saveSalesRep(User user){
+        user.setRoles(Arrays.asList(roleRepo.findByRole("SalesRep")));
         user.setEnabled(true);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepo.save(user);

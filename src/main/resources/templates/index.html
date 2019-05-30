@@ -3,14 +3,50 @@
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <Style>
+    img{
+    max-height: 300px;
+    height: 70%;
+    width: auto;}
+    </Style>
     <meta charset="UTF-8">
-    <title>It Works!</title>
+    <title>This will be the Home Page</title>
 </head>
-<body>
+<div th:replace="base:: nav"></div>
 
-<h1>this is not a secure page</h1>
+<div class="col-md-5 p-lg-5 mx-auto my-5">
+    <h1 class="display-4 font-weight-normal">Welcome to my MyDealer </h1>
+    <p class="lead font-weight-normal">Buy brand new and used cars -- Listed below are all the categories we offer</p>
+</div>
+</br>
+<nav>
+<ul class="nav">
+    <li class="nav-item" th:each="cat:${category}" >
+        <a class="nav-link" href="#"><h8 th:text="${cat.categoryName}"></h8></a>
+    </li>
 
-<a href="/secure">Secure Page</a>
+
+</ul>
+</nav>
+
+<div class="bg-dark mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden"th:each="car : ${cars}">
+    <div class="my-3 py-3">
+    <h2>Car Model:</h2><h2 th:text="${car.carModel}"></h2><br/>
+    MSRP: <p th:text="${car.MSRP}"></p>
+    </div>
+    <div class="bg-light shadow-sm mx-auto" style="width: 70%; height: 300px; border-radius: 5px 5px 0 0;">
+    <div th:if="${car.picture} != null">
+        <img th:src="${car.picture}" alt="this is a head shot"/>
+        <hr/>
+    </div>
+    </div>
+    <a th:href="@{/detail/car/{id}(id=${car.id})}"><button type="button" class="btn btn-primary">More Info</button></a>
+</div>
+
+<div th:replace="base:: footer"></div>
+
+
+
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>

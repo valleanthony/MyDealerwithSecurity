@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 
 @Component
@@ -39,6 +40,8 @@ public class DataLoader implements CommandLineRunner {
         user1.setUsername("valleant");
         userRepo.save(user1);
 
+
+
         User user2 = new User();
         user2.setUsername("user");
         user2.setRoles(Arrays.asList(userRole));
@@ -49,6 +52,15 @@ public class DataLoader implements CommandLineRunner {
         user2.setEnabled(true);
         userRepo.save(user2);
 
+        User user3 =new User();
+        user3.setUsername("user3");
+        user3.setPassword("password");
+        user3.setRoles(Arrays.asList(userRole));
+        user3.setFirstName("user3");
+        user3.setLastName("MC");
+        user3.setEmail("email@email.com");
+        user3.setEnabled(true);
+        userRepo.save(user3);
     }
 
 }

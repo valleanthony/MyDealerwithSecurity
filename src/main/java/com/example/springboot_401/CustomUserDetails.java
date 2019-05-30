@@ -29,6 +29,7 @@ public class CustomUserDetails extends org.springframework.security.core.userdet
         this.user=user;
     }
 
+
     public User getUser(){
         return user;
     }

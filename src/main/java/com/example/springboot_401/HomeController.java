@@ -11,16 +11,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
 import java.security.Principal;
+import java.util.ArrayList;
 
 @Controller
 public class HomeController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping("/")
-    public String index(){
-        return "index";
-    }
+//    @RequestMapping("/")
+//    public String index(){
+//        return "index";
+//    }
 
     @RequestMapping("/login")
     public String login(){
@@ -44,6 +45,7 @@ public class HomeController {
         model.addAttribute("user", new User());
         return "registration";
     }
+
 
 
     @RequestMapping(value = "/register",method = RequestMethod.POST)
